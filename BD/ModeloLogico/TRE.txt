@@ -1,0 +1,32 @@
+Eleitor(Eleitor_id:auto_increment,Nome:varchar:(10),Cpf:char(11),indentidade:char(9),Endereço_id:int)
+	Primary Key(Eleitor_id)
+	Endereço_id referencia Endereço
+
+TituloEleitor(Titulo_id:auto_increment,numero:char(10),Eleitor_id:int(5))
+	Primary Key (Titulo_id)
+	Eleitor_id referencia Eleitor
+
+Seção(Seção_id:auto_increment,Politico_id:int(5),Titulo_id:int(5),Numero:int(5),Votos:int(5),Politico_id:int(5),Endereço_id:int(5))
+	Primary Key(seção_id)
+	Titulo_id referencia TituloEleitor
+	Endereço_id referencia Endereço
+	Politico_id referencia Politico
+	
+
+	Atributo votos adicionado em Seção.
+	Atributo Politico adicionado em Seção.
+
+ZonaEleitoral(ZonaEleitoral:auto_increment,Seção_id:int(5),região: varchar(10))
+	Primary Key(ZonaEleitoral)
+	Seção_id referencia Seção
+
+Politico(Politico_id:auto_increment,Cpf:char(11),Nome:varchar(20),Partido_id:int(5),votosPolitico:int(20))
+	Primary Key(Politico_id)
+	Partido_id referencia
+	
+	Retirando relacionamento de Politico com tituloEleitor,Porque Politico tbm é Eleitor comum.
+	Retirando relacionamento entre politico e zona eleitoral , pois o politico n tem zona eleitoral.
+	Colocando relacionamento com politico e seção para saber quantos votos ele vai receber.
+	
+	
+

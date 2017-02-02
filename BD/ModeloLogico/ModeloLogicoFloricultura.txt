@@ -1,0 +1,42 @@
+Cliente(Cliente_id :auto_increment,endereço_id :int(5),nome :varchar(20),email:varchar(10),Cpf:char(11),Endereço_id)
+	Primary Key(cliente_id)
+	Endereço_id referencia Endereço
+
+Endereço(Endereço_id:auto_increment,Cliente_id,Cidade:varchar(10),Bairro:varchar(10),Complemento:varchar(10),Rua:varchar(10),Número:int(5))
+	Endereço_id referencia Endereço
+	Cliente_id referencia Cliente
+	Primary_Key(Endereço_id) 
+
+Floricultura(Floricultura_id:auto_increment,Nome:varchar(10),CNPJ:varchar(12),email:varchar(15),Endereço_id:int)
+	Endereço_id referencia Endereço
+	Primary Key (Floricultura_id)
+
+Entrega(Floricultura_id:Primary key,Cliente_id:Primary key)
+	Floricultura_id referencia Floricultura
+	Cliente_id referencia Cliente
+
+FloresTem(Floricultura_id:auto_increment,Flores_id primary key)
+	Floricultura_id referencia Floricultura
+	Flores_id referencia Flores
+	Primary key(Floricultura_id)
+
+Flores(Flores_id:auto_increment,Flor:varchar(10),tipo:varchar(10),cor:varchar(10))
+	Primary key(Flores_id)
+
+PeddioTem(Pedido_id:auto_increment,Flores_id:auto_increment,quantida:int(10))
+	Primary key(Pedido_id)
+	Primary key(Flores_id)
+
+Pedido(Pedido_id:auto_increment,TipoPagamento:varchar(10),Cliente_id:int(5),Flores_id:int(5))
+	Primary Key(Pedido_id)
+	Cliente_id referencia Cliente
+	Flores_id referencia Flores
+
+	Cardinalidade (faz) entre cliente e pedido estava errada e foi modificada para 1,1 x 0,n.
+
+ExecutaPedido(Pedido_id:int(5),Floricultura_id:int(5))
+	Primary Key(Pedido_int)
+	Primary Key(Floriculrura_id)
+
+
+	
